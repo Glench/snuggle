@@ -6,10 +6,16 @@ var snuggle = require('../lib/snuggle'),
 
 program
     .version('0.0.1')
+    .option('-v, --verbose', 'Show more output', false)
     .parse(process.argv);
 
 var staticConfigPath = program.args[0] || 'snuggle.conf.json';
+
+if (program.verbose) {
+    snuggle.logger.setLevel('debug');
+}
+
 fs.readFile(staticConfigPath, function(staticConfigErr, staticConfigJson){
     if (staticConfigErr) { throw staticConfigErr; }
-    snuggle.main(JSON.parse(staticConfigJson));
+    snuggle.main(JSON.parse(staticConfigJson), logger);
 });
