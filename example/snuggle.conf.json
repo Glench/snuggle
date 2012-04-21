@@ -1,7 +1,8 @@
 {
-    "compiled_cache_dir": "tmp/cache",
     "css_base_dir": "./public/css",
     "js_base_dir": "./public/js",
+    "output_dir": "./combined_output",
+    "compiled_cache_dir": "./snuggle_cache",
     "global_js_filename": "c.global.js",
     "global_css_filename": "c.global.css",
     "processors": {
@@ -10,15 +11,15 @@
         "less":   ["lessc", "css"]
         },
     "combined": {
-        "c.carrier.js": [
-            "portlets/carrier/profile.js",
-            "portlets/carrier/a.profile.js"
+        "c.default.js": [
+            "js/home.js",
+            "js/profile.js"
         ],
-        "other_file.js": [
-            "portlets/carrier/profile.js"
+        "c.other_file.js": [
+            "js/home.js"
         ],
-        "c.carrier.css": [
-            "portlets/carrier/profile.css"
+        "c.default.css": [
+            "css/home.css"
         ]
     }
 }
