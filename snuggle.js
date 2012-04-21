@@ -6,10 +6,9 @@ var fs = require('fs'),
 
 program
     .version('0.0.1')
-    .option('-i, --input [json file]', 'Static assets map input file [static_config.json]', 'static_config.json')
-    .option('-o, --output [directory]', 'Directory to store combined/compressed assets')
-    .option('-c, --cache [file]', 'JSON cache file [.snuggle_cache.json]', '.snuggle_cache.json')
     .parse(process.argv);
+
+var staticConfigPath = program.args[0];
 
 var invertObject = function(object) {
     // Turns {a: 1, b: 2, c: 3, d: 3} into {1: ['a'], 2: ['b'], 3: ['c', 'd']}
@@ -28,25 +27,21 @@ var invertObject = function(object) {
 };
 
 // read the static config JSON file
-fs.readFile(program.input, function(staticConfigErr, staticConfigJSON) {
+fs.readFile(staticConfigPath, function(staticConfigErr, staticConfigJSON) {
     if (staticConfigErr) { throw staticConfigErr; }
 
-    // read MD5 cache file if it exists
-    fs.readFile(program.cache, function(cacheErr, md5JSON) {
-        var staticConfig = JSON.parse(staticConfigJSON),
-            md5Cache = cacheErr ? {} : JSON.parse(md5JSON),
-            processors = staticConfig.processors,
-            inverseAssetMap = invertOjbect(staticConfig.combined);
+    var staticConfig = JSON.parse(staticConfigJSON),
+        processors = staticConfig.processors,
+        inverseAssetMap = invertOjbect(staticConfig.combined);
 
-        // loop over all assets, figure out if they've changed, and compile them
-        _.each(inverseAssetMap, function(filePath, combinedFilePath){
-            var extension = path.extname(filePath),
-                processor = processors[extension];
-            if (processor) {
-                
-            } else {
-                util.error('No processor found for file: ' + filePath);
-            }
-        });
+    // loop over all assets, figure out if they've changed, and compile them
+    _.each(inverseAssetMap, function(filePath, combinedFilePath){
+        var extension = path.extname(filePath),
+            processor = processors[extension];
+        if (processor) {
+            // TODO
+        } else {
+            util.error('No processor found for file: ' + filePath);
+        }
     });
 });
