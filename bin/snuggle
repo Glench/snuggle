@@ -1,0 +1,5 @@
+#!/usr/bin/env node
+
+var snuggle = require('../lib/snuggle');
+
+snuggle.main();
