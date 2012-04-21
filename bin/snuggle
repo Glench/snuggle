@@ -8,7 +8,7 @@ program
     .version('0.0.1')
     .parse(process.argv);
 
-var staticConfigPath = program.args[0];
+var staticConfigPath = program.args[0] || 'snuggle.conf.json';
 fs.readFile(staticConfigPath, function(staticConfigErr, staticConfigJson){
     if (staticConfigErr) { throw staticConfigErr; }
     snuggle.main(JSON.parse(staticConfigJson));

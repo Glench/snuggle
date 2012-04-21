@@ -1,14 +1,20 @@
 {
-    "compiled_cache_dir": "tmp/cache",
-    "css_base_dir": "./public/css",
-    "js_base_dir": "./public/js",
+    "compiled_cache_dir": "testdir/tmp/cache",
+
+    "css_base_dir": "testdir/public/css",
+    "js_base_dir": "testdir/public/js",
+
+    "output_base_dir": "testdir/output",
+    "output_base_dir_js": "",
+
     "global_js_filename": "c.global.js",
     "global_css_filename": "c.global.css",
+
     "processors": {
-        "js":     "java -jar YUICompressor.jar {input}",
-        "coffee": ["coffee -c {input} {output}", "js"],
-        "less":   ["lessc", "css"]
+        "js":     "java -Xmx200m -Xms50m -Xincgc -jar testdir/yuicompressor-2.4.7.jar {input} -o {output}",
+        "css":     "java -Xmx200m -Xms50m -Xincgc -jar testdir/yuicompressor-2.4.7.jar {input} -o {output}"
         },
+
     "combined": {
         "c.carrier.js": [
             "portlets/carrier/profile.js",
