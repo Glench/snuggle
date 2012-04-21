@@ -1,5 +1,15 @@
 #!/usr/bin/env node
 
-var snuggle = require('../lib/snuggle');
+var snuggle = require('../lib/snuggle'),
+    fs = require('fs'),
+    program = require('commander');
 
-snuggle.main();
+program
+    .version('0.0.1')
+    .parse(process.argv);
+
+var staticConfigPath = program.args[0];
+fs.readFile(staticConfigPath, function(staticConfigErr, staticConfigJson){
+    if (staticConfigErr) { throw staticConfigErr; }
+    snuggle.main(JSON.parse(staticConfigJson));
+});
