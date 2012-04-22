@@ -52,8 +52,6 @@ Features
 
 * Caches the latest compiled/minimized files so you only recompile the files that have changed.
 
-* Automatically rewrites URLs in files to work in resultant combined files.
-
 Install
 -------
     npm install snuggle
@@ -84,9 +82,9 @@ All options should probably go in a `snuggle.conf.json` file in the root of your
 
 * `compiled_cache_dir`: A string of the path where snuggle should store its cached files (will be created automatically if it doesn't already exist. E.g. `"./.snuggle_cache"`
 
-* `global_css_filename`: A string of the file name where any files not specified in `combined` (see below) will end up. E.g. `"c.global.css"`
+* `default_css_filename`: A string of the file name where any files not specified in `combined` (see below) will end up. E.g. `"c.global.css"`
 
-* `global_js_filename`: A string of the file name where any JavaScript files not specified in `combined` (see below) will end up. E.g. `"c.global.js"`
+* `default_js_filename`: A string of the file name where any JavaScript files not specified in `combined` (see below) will end up. E.g. `"c.global.js"`
 
 * `processors`: A hash map consisting of:
 

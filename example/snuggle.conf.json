@@ -3,8 +3,8 @@
     "js_base_dir": "./public/js",
     "output_dir": "./combined_output",
     "compiled_cache_dir": "./snuggle_cache",
-    "global_js_filename": "c.global.js",
-    "global_css_filename": "c.global.css",
+    "default_js_filename": "c.global.js",
+    "default_css_filename": "c.global.css",
     "processors": {
         "js":     "java -jar YUICompressor.jar {input}",
         "coffee": ["coffee -c {input} {output}", "js"],
