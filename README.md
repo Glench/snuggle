@@ -42,7 +42,7 @@ Easy enough. Now let's get more complicated.
             a.less
             b.less
 
-Here we're using [CoffeeScript][http://coffeescript.org/] and [LessCSS][http://lesscss.org/] files. We might then have a `snuggle.conf.json` like this:
+Here we're using [CoffeeScript](http://coffeescript.org/) and [LessCSS](http://lesscss.org/) files. We might then have a `snuggle.conf.json` like this:
 
     fill this in with coffeescript/less examples plus combined files example
 
