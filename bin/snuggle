@@ -17,5 +17,5 @@ if (program.verbose) {
 
 fs.readFile(staticConfigPath, function(staticConfigErr, staticConfigJson){
     if (staticConfigErr) { throw staticConfigErr; }
-    snuggle.main(JSON.parse(staticConfigJson), snuggle.logger);
+    snuggle.main(JSON.parse(staticConfigJson));
 });
