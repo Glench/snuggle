@@ -52,6 +52,8 @@ Features
 
 * Caches the latest compiled/minimized files so you only recompile the files that have changed.
 
+* Automatically rewrites URLs in files to work in resultant combined files.
+
 Install
 -------
     npm install snuggle
