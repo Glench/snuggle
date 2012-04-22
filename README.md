@@ -92,11 +92,11 @@ All options should probably go in a `snuggle.conf.json` file in the root of your
 
     * A `value`: A string or array of strings of the process commands you want to run for each file type. An array is used when a file needs preprocessing (such as in Less or CoffeeScript) before being minimized. In this case, the second item in the array should be the name of another processor in this hash map. If a command line utility needs an input or output file specified, this can be done with the `{input}` and `{output}` template variables. Otherwise, `stdin` and `stdout` will be used. E.g. `"java -jar YUICompressor.jar {input}"` or `["coffee -c {input} {output}", "js"]` or `["lessc", "css"]`
 
-    {
-        "js": "uglifyjs -o {output}",
-        "less": ["lessc", "css"],
-        "css": "java -jar YUICompressor.jar {input}"
-    }
+        {
+            "js": "uglifyjs -o {output}",
+            "less": ["lessc", "css"],
+            "css": "java -jar YUICompressor.jar {input}"
+        }
 
 * `combined`: A hash map consisting of:
     * A `key`: string key of the final combined file name e.g. `"c.profile.js"` or `"c.profile.css"`
