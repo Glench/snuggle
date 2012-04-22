@@ -2,7 +2,6 @@
 
 var snuggle = require('../lib/snuggle'),
     fs = require('fs'),
-    logger = require('logger'),
     program = require('commander');
 
 program
