@@ -98,7 +98,7 @@ All options should probably go in a `snuggle.conf.json` file in the root of your
             "css": "java -jar YUICompressor.jar {input}"
         }
 
-* `combined`: A hash map consisting of:
+* `combined`: [optional] A hash map consisting of:
     * A `key`: string key of the final combined file name e.g. `"c.profile.js"` or `"c.profile.css"`
     * A `value`: array of strings of full file paths to the resources that should be combined into the combined file e.g. `[ "js/profile-internal.js", "js/profile-external.js"  ]`
 
