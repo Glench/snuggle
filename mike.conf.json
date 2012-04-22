@@ -20,7 +20,11 @@
         "css":     "java -Xmx200m -Xms50m -Xincgc -jar testdir/yuicompressor-2.4.7.jar --type css -o {output} {input}"
         },
 
+    "default_js_filename": "testdir/combined.js",
+
     "combined": {
+        "testdir/combined.js": ["*.js"],
+
         "c.carrier.js": [
             "portlets/carrier/profile.js",
             "portlets/carrier/a.profile.js"
