@@ -74,9 +74,9 @@ Configuration
 -------------
 All options should probably go in a `snuggle.conf.json` file in the root of your static directory, but don't need to (just specify on the command line the file you want). Here are all the options that can go in that file:
 
-* `css_base_dir`: A string of the path to your CSS (or equivalent) files e.g. `"./public/css"`
+* `css_base_dir`: A string of the path to your CSS (or equivalent) input files e.g. `"./public/css"`
 
-* `js_base_dir`: A string of the path to your JavaScript (or equivalent) files e.g. `"./public/js"`
+* `js_base_dir`: A string of the path to your JavaScript (or equivalent) input files e.g. `"./public/js"`
 
 * `output_dir`: A string of the path where you want the combined/compressed output to be stored e.g. `"./public_output"`
 
