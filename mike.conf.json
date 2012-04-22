@@ -11,8 +11,13 @@
     "global_css_filename": "c.global.css",
 
     "processors": {
-        "js":     "java -Xmx200m -Xms50m -Xincgc -jar testdir/yuicompressor-2.4.7.jar {input} -o {output}",
-        "css":     "java -Xmx200m -Xms50m -Xincgc -jar testdir/yuicompressor-2.4.7.jar {input} -o {output}"
+        "coffee": {"cmd": "coffee -s", "next": "js"},
+        "js":     {"cmd": "cat", "next": "js1"},
+        "js1":     {"cmd": "cat", "next": "js2"},
+        "js2":     {"cmd": "cat", "next": "js3"},
+        "js3":     {"cmd": "cat", "next": "js4"},
+        "js4":     {"cmd": "java -Xmx200m -Xms50m -Xincgc -jar testdir/yuicompressor-2.4.7.jar --type js -o {output} {input}", "fileType": "js"},
+        "css":     "java -Xmx200m -Xms50m -Xincgc -jar testdir/yuicompressor-2.4.7.jar --type css -o {output} {input}"
         },
 
     "combined": {
