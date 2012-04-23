@@ -4,7 +4,8 @@
     "css_base_dir": "testdir/public/css",
     "js_base_dir": "testdir/public/js",
 
-    "output_base_dir": "testdir/output",
+    "output_dir": "testdir/output",
+
     "output_base_dir_js": "",
 
     "global_js_filename": "c.global.js",
@@ -16,14 +17,14 @@
         "js1":     {"cmd": "cat", "next": "js2"},
         "js2":     {"cmd": "cat", "next": "js3"},
         "js3":     {"cmd": "cat", "next": "js4"},
-        "js4":     {"cmd": "java -Xmx200m -Xms50m -Xincgc -jar testdir/yuicompressor-2.4.7.jar --type js -o {output} {input}", "fileType": "js"},
+        "js4":     {"cmd": "uglifyjs", "fileType": "js"},
         "css":     "java -Xmx200m -Xms50m -Xincgc -jar testdir/yuicompressor-2.4.7.jar --type css -o {output} {input}"
         },
 
-    "default_js_filename": "testdir/combined.js",
+    "default_js_filename": "combined.js",
 
     "combined": {
-        "testdir/combined.js": ["*.js"],
+        "combined.js": ["*.js"],
 
         "c.carrier.js": [
             "portlets/carrier/profile.js",
