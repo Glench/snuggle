@@ -14,8 +14,14 @@ var staticConfigPath = program.args[0] || 'snuggle.conf.json';
 if (program.verbose) {
     snuggle.logger.setLevel('debug');
 }
+snuggle.logger.debug('Using configuration file ' + staticConfigPath);
 
-fs.readFile(staticConfigPath, function(staticConfigErr, staticConfigJson){
+fs.readFile(staticConfigPath, 'utf8', function(staticConfigErr, staticConfigJson){
     if (staticConfigErr) { throw staticConfigErr; }
-    snuggle.main(JSON.parse(staticConfigJson));
+    try {
+        var staticMap = JSON.parse(staticConfigJson)
+    } catch (err) {
+        throw 'Unable to parse JSON configuration. Check your syntax.'
+    }
+    snuggle.main(staticMap);
 });
