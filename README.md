@@ -74,9 +74,9 @@ Configuration
 -------------
 All options should probably go in a `snuggle.conf.json` file in the root of your static directory, but don't need to (just specify on the command line the file you want). Here are all the options that can go in that file:
 
-* `css_base_dir`: A string of the path to your CSS (or equivalent) input files e.g. `"./public/css"`
+* `css_sources_base_dir`: A string of the path to your CSS (or equivalent) input files e.g. `"./public/css"`
 
-* `js_base_dir`: A string of the path to your JavaScript (or equivalent) input files e.g. `"./public/js"`
+* `js_sources_base_dir`: A string of the path to your JavaScript (or equivalent) input files e.g. `"./public/js"`
 
 * `output_dir`: A string of the path where you want the combined/compressed output to be stored e.g. `"./public_output"`
 
@@ -90,7 +90,7 @@ All options should probably go in a `snuggle.conf.json` file in the root of your
 
     * A `key`: string of the file extension you want to process e.g. `"js"` or `"less"`
 
-    * A `value`: A string or array of strings of the process commands you want to run for each file type. An array is used when a file needs preprocessing (such as in Less or CoffeeScript) before being minimized. In this case, the second item in the array should be the name of another processor in this hash map. If a command line utility needs an input or output file specified, this can be done with the `{input}` and `{output}` template variables. Otherwise, `stdin` and `stdout` will be used. E.g. `"java -jar YUICompressor.jar {input}"` or `["coffee -c {input} {output}", "js"]` or `["lessc", "css"]`
+    * A `value`: A string or hash of `{"cmd": "string to command", "next": "next file ext", "fileType": "final file type"}` of the process commands you want to run for each file type. An array is used when a file needs preprocessing (such as in Less or CoffeeScript) before being minimized. In this case, the second item in the array should be the name of another processor in this hash map. If a command line utility needs an input or output file specified, this can be done with the `{input}` and `{output}` template variables. Otherwise, `stdin` and `stdout` will be used. E.g. `"java -jar YUICompressor.jar {input}"` or `["coffee -c {input} {output}", "js"]` or `["lessc", "css"]`
 
         {
             "js": "uglifyjs -o {output}",
@@ -100,6 +100,6 @@ All options should probably go in a `snuggle.conf.json` file in the root of your
 
 * `combined`: [optional] A hash map consisting of:
     * A `key`: string key of the final combined file name e.g. `"c.profile.js"` or `"c.profile.css"`
-    * A `value`: array of strings of full file paths to the resources that should be combined into the combined file e.g. `[ "js/profile-internal.js", "js/profile-external.js"  ]`
+    * A `value`: array of strings of full file paths or a hash map that has an array of full file paths under the 'components' key to the resources that should be combined into the combined file e.g. `[ "js/profile-internal.js", "js/profile-external.js"  ]`
 
 A good example of these options is in the `example` directory in this project.
