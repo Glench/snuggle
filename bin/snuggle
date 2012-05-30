@@ -7,6 +7,7 @@ var snuggle = require('../lib/snuggle'),
 program
     .version('0.0.1')
     .option('-v, --verbose', 'Show more output', false)
+    .option('-o, --output <output_directory> ', 'Directory to output files to')
     .parse(process.argv);
 
 var staticConfigPath = program.args[0] || 'snuggle.conf.json';
@@ -22,6 +23,10 @@ fs.readFile(staticConfigPath, 'utf8', function(staticConfigErr, staticConfigJson
         var staticMap = JSON.parse(staticConfigJson)
     } catch (err) {
         throw 'Unable to parse JSON configuration. Check your syntax.'
+    }
+    if (program.output) {
+        staticMap.output_dir = program.output
+        console.log(staticMap.output_dir)
     }
     snuggle.main(staticMap);
 });
