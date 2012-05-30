@@ -7,7 +7,8 @@ var snuggle = require('../lib/snuggle'),
 program
     .version('0.0.1')
     .option('-v, --verbose', 'Show more output', false)
-    .option('-o, --output <output_directory> ', 'Directory to output files to')
+    .option('-o, --output <output_directory> ', 'Directory to output files to, also specified as "output_dir" in config file')
+    .option('-n, --num-workers <number_of_workers> ', 'Directory to output files to [number of CPUs]')
     .parse(process.argv);
 
 var staticConfigPath = program.args[0] || 'snuggle.conf.json';
@@ -20,13 +21,16 @@ snuggle.logger.debug('Using configuration file ' + staticConfigPath);
 fs.readFile(staticConfigPath, 'utf8', function(staticConfigErr, staticConfigJson){
     if (staticConfigErr) { throw staticConfigErr; }
     try {
-        var staticMap = JSON.parse(staticConfigJson)
+        var staticMap = JSON.parse(staticConfigJson);
     } catch (err) {
         throw 'Unable to parse JSON configuration. Check your syntax.'
     }
+
     if (program.output) {
-        staticMap.output_dir = program.output
-        console.log(staticMap.output_dir)
+        staticMap.output_dir = program.output;
+    }
+    if (program.numWorkers) {
+        staticMap.num_workers = program.numWorkers;
     }
     snuggle.main(staticMap);
 });
